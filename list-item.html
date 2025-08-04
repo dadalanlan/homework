@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>列表项目</title>
+  <style>
+
+    @font-face {
+     font-family: 'oppo-normal';
+     src: url('./res/fonts/OPPOSans-R.ttf') format('truetype');
+     font-weight: normal;
+     font-style: normal;
+    }
+
+    @font-face {
+     font-family: 'oppo-medium';
+     src: url('./res/fonts/OPPOSans-M.ttf') format('truetype');
+     font-weight: medium;
+     font-style: normal;
+    }
+
+    @font-face {
+     font-family: 'oppo-bold';
+     src: url('./res/fonts/OPPOSans-B.ttf') format('truetype');
+     font-weight: bold;
+     font-style: normal;
+    }
+
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+        background-color: #f9f9f9;
+        font-family: 'oppo-normal', 'oppo-medium', 'oppo-bold';
+    }
+
+    #stabar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 44px;
+      background-color: #ffffff
+    ;
+    }
+
+    #status-time {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: oppo-bold;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 20px;
+      align-items: center;
+      color: #333;
+    }
+
+    #navbar {
+      position: fixed;
+      top: 44px;
+      left: 0;
+      width: 100%;
+      height: 44px;
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #icon-back {
+      position: absolute;
+      height: 24px;
+      width: 24px;
+      top: 10px;
+      left: 12px;
+    }
+
+    #page-title {
+      font-family: oppo-bold;
+      font-weight: bold;
+      font-size: 17px;
+      line-height: 26px;
+      color: #333333;
+      text-align: center;
+      flex: 1;
+      z-index: 1;
+      pointer-events: none; /* 保证点击事件不会被遮挡 */
+    }
+
+    #icon-close {
+      position: absolute;
+      height: 24px;
+      width: 24px;
+      top: 10px;
+      right: 12px;
+    }
+
+    #list-card {
+      position: absolute;
+      top: 88px; /* 44px for status bar + 44px for navbar */
+      left: 0;
+      width: 100%;
+      /* height: calc(100% - 88px); */
+      overflow-y: auto;
+      background-color: #f9f9f9;
+      padding: 12px;
+      margin: 0;
+      box-sizing: border-box; /*核心作用是将元素的宽度和高度设置为包含内容、内边距（padding）和边框（border）的总和*/
+    }
+
+    .item-icon {
+      width: 32px;
+      height: 32px;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    .list-item {
+      padding: 16px 12px;
+      font-family: oppo-normal;
+      font-size: 16px;
+      line-height: 24px;
+      color: #333333;
+      background-color: #ffffff;
+      margin-bottom: 12px;
+      border-radius: 8px;
+    }
+
+  </style>
+</head>
+
+<body>
+    <div id="stabar">
+        <span id="status-time">00:00</span>
+    </div>
+    <div id="navbar" >
+        <div id="icon-back">
+            <img src="./res/icon-back.png" style="width: 100%;">
+        </div>
+        <span id="page-title">列表项目</span>
+        <div id="icon-close">
+            <img src="./res/icon-close.png" style="width: 100%;">
+        </div>
+    </div>
+
+    <ul id="list-card" style="list-style-type: none;">
+        <li class="list-item">
+            <img class="item-icon" src="./res/iocn-list-faxian.png" alt="默认显示内容">第一行标题
+        </li>
+        <li class="list-item">
+            <img class="item-icon" src="./res/iocn-list-dianzan.png" alt="默认显示内容">第二行标题
+        </li>
+        <li class="list-item">
+            <img class="item-icon" src="./res/iocn-list-caogaoxiang.png" alt="默认显示内容">第三行标题
+        </li>
+        <li class="list-item">
+            <img class="item-icon" src="./res/iocn-list-tongzhi.png" alt="默认显示内容">第四行标题
+        </li>
+        <li class="list-item">
+            <img class="item-icon" src="./res/iocn-list-wenjian.png" alt="默认显示内容">第五行标题
+        </li>
+        <li class="list-item">
+            <img class="item-icon" src="./res/iocn-list-xiaoxi.png" alt="默认显示内容">第六行标题
+        </li>
+    </ul>
+
+    <script>
+      function updateTime() {
+        const now = new Date();
+        const h = now.getHours().toString().padStart(2, '0');
+        const m = now.getMinutes().toString().padStart(2, '0');
+        document.getElementById('status-time').textContent = `${h}:${m}`;
+      }
+      updateTime();
+      setInterval(updateTime, 1000 * 10);
+    </script>
+
+</body>
+</html>
